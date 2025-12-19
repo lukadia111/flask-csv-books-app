@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>{{ title or "Books Catalog" }}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    .nav a { margin-right: 12px; }
+    .flash { padding: 10px; margin: 10px 0; border-radius: 6px; }
+    .flash.success { background: #e7f7ee; }
+    .flash.error { background: #fde8e8; }
+    .btn { padding: 8px 12px; border: 1px solid #333; border-radius: 6px; background: white; cursor: pointer; }
+    .muted { color: #666; }
+  </style>
+</head>
+<body>
+<div class="nav">
+  <a href="{{ url_for('index') }}">Home</a>
+  <a href="{{ url_for('import_csv') }}">Import CSV</a>
+  <a href="{{ url_for('list_books') }}">Browse</a>
+</div>
+
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for cat, msg in messages %}
+        <div class="flash {{ cat }}">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+</body>
+</html>

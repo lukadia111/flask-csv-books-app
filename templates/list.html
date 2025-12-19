@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Books</h1>
+
+  <form method="get">
+    <input type="text" name="q" value="{{ q }}" placeholder="Search title/author/genre">
+    <button class="btn" type="submit">Search</button>
+    <a class="btn" href="{{ url_for('list_books') }}">Reset</a>
+  </form>
+
+  <table border="1" cellpadding="6" cellspacing="0" style="margin-top:12px; width:100%;">
+    <tr>
+      <th>Title</th><th>Author</th><th>Year</th><th>Genre</th><th>Rating</th><th>Details</th>
+    </tr>
+    {% for r in rows %}
+      <tr>
+        <td>{{ r["title"] }}</td>
+        <td>{{ r["author"] }}</td>
+        <td>{{ r["year"] }}</td>
+        <td>{{ r["genre"] }}</td>
+        <td>{{ "%.1f"|format(r["rating"]) }}</td>
+        <td><a href="{{ url_for('book_detail', book_id=r['id']) }}">Open</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

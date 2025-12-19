@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Book Details</h1>
+
+  <p><b>Title:</b> {{ row["title"] }}</p>
+  <p><b>Author:</b> {{ row["author"] }}</p>
+  <p><b>Year:</b> {{ row["year"] }}</p>
+  <p><b>Genre:</b> {{ row["genre"] }}</p>
+  <p><b>Rating:</b> {{ "%.1f"|format(row["rating"]) }}</p>
+
+  <a class="btn" href="{{ url_for('list_books') }}">Back</a>
+{% endblock %}
